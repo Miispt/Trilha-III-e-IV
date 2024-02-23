@@ -1,10 +1,11 @@
-﻿
 
-label start:
+label start:   #cena1
     show fundo1
     with dissolve
 
     "Todos os dias no Condomínio Laranjeiras chegam encomendas de vários tipos e tamanhos para os moradores."
+
+label correios:   #cena2
 
     hide fundo1
     show fundo2
@@ -12,13 +13,13 @@ label start:
     show personagem9:
         xalign 0.1 
     with moveinleft
-
+ 
     ent "Boa tarde! Encomenda para Ednaldo Pontes do apartamento 305."
     jose "Boa tarde! Só um minuto, por favor."
     jump minijogo1
     return
 
-label minijogo1:
+label minijogo1:   # Minijogo 1 - Será que é morador?
 
     hide fundo2
     hide personagem9   #sair o porteiro grande
@@ -37,7 +38,7 @@ label minijogo1:
             "Muito bem! Bons porteiros devem ser sempre prevenidos!"
             "Devem acessar o arquivo ou livro de moradores e apartamentos"
             "Para verificar se Ednaldo Pontes é um morador do Condomínio Laranjeiras."
-            jump cena2
+            jump recebimento
             return
 
         "Receber o pacote primeiro":
@@ -48,7 +49,7 @@ label minijogo1:
             jump minijogo1
             return
 
-label cena2:
+label recebimento: #cena3
     hide fundo8        #sai fundo de jogos
     hide personagem8   #sai o Entregador pequeno
     with dissolve      #ambos com transição de dissolver
@@ -63,7 +64,7 @@ label cena2:
     "Foi descarregada uma grande remessa de várias caixas pequenas com fita vermelha e identificação: FRÁGIL."
     "Em seguida, ele assinou um documento de recebimento e se despediu do entregador."
 
-label minijogo2:
+label minijogo2:   #Minijogo 2 - Recebi a encomenda, e agora?
 
     hide fundo3         #sai a frente da guarita com caixas na direita
     hide personagem2    #sai imagem do José e do Entregador juntos
@@ -132,7 +133,7 @@ label minijogo2:
             jump minijogo2
             return
 
-label minijogo4:
+label minijogo4:   #Minijogo 4 – Ligue para Ednaldo
     
     show fundo6           #entra o fundo da guarita por dentro
     with dissolve         #com transição de dissolver
@@ -146,10 +147,10 @@ label minijogo4:
     
     menu:
         "Ligar para o apartamento 305":
-            jump cena5
+            jump conversa
             return
     
-label cena5:
+label conversa: #cena4
     
     hide personagem4      #sai José pedindo pra clicar no botão
     show personagem5:     #entra José ligando
@@ -168,7 +169,7 @@ label cena5:
 
     jose "Elas já estão organizadas para retirada, só preciso que assine o livro e..."
 
-label minijogo5:
+label minijogo5:   #Minijogo 5 – Documentação
     
     hide fundo6          #sai fundo da guarita por dentro
     hide personagem6     #sai José duvida2
@@ -215,7 +216,7 @@ label identidade:
     hide fundo8           #sai fundo azul de jogos
     with dissolve         #com transição de dissolver
 
-    jump cena6
+    jump documentos
     return
 
 label carteira:
@@ -233,7 +234,7 @@ label carteira:
     jump minijogo5
     return
 
-label cena6:
+label documentos: #cena5
 
     show fundo6               #entra o fundo da guarita por dentro
     show personagem5:         #entra José ligando
@@ -255,6 +256,8 @@ label cena6:
     hide personagem15   #sai José dando tchau
     with dissolve       #com transição de dissolver
 
+label fim: #cena6
+
     show fundo1         #entra fundo da frente do condomínio completo 
     with dissolve       #com transição de dissolver
 
@@ -263,12 +266,9 @@ label cena6:
 
     hide fundo1         #sai fundo da frente do condomínio completo 
     with zoominout
-
-    # This ends the game.
-
     return
 
-screen jogodacaixa:
+screen jogodacaixa: #Minijogo 3 – Clique na Caixa (screen jogodacaixa)
     add "fundo5"     #entra o fundo do jogo de clicar na caixa
     modal True       #sumir caixa de texto
 
@@ -292,4 +292,3 @@ screen jogododocumento:
         imagebutton auto "credito_%s.PNG" action Jump("cartao") xalign 2.8 yalign 0.3
         imagebutton auto "documentos_%s.PNG" action Jump("identidade") xalign 0.3 yalign 0.7
         imagebutton auto "membro_%s.PNG" action Jump("carteira") xalign 0.4 yalign 0.7
- 
